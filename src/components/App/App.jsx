@@ -1,17 +1,42 @@
 import React, { Component } from 'react';
-import { AmountContacts, ContactsContainer, Container, EmptyText, TitelContacts, TitlePhonebook } from './App.styled';
-import initialContacts from 'components/data/contacts.json'
+import {
+  AmountContacts,
+  ContactsContainer,
+  Container,
+  EmptyText,
+  TitelContacts,
+  TitlePhonebook,
+} from './App.styled';
+import initialContacts from 'components/data/contacts.json';
 import { nanoid } from 'nanoid';
 import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
 import { Contacts } from 'components/Contacts';
 import { GlobalStyle } from 'components/constants/GlobalStyles';
 
+const STORAGE_KEY_CONTACTS = 'contacts';
 
-export class App extends Component  {
+export class App extends Component {
   state = {
     contacts: initialContacts,
     filter: '',
+  };
+
+  componentDidMount() {
+    const contacts = localStorage.getItem(STORAGE_KEY_CONTACTS);
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(
+        STORAGE_KEY_CONTACTS,
+        JSON.stringify(this.state.contacts)
+      );
+    }
   }
 
   addContact = (name, number) => {
@@ -29,8 +54,6 @@ export class App extends Component  {
     };
     this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
   };
-
-
 
   formattedNumber = number => {
     let formattedNumber = number.substring(0, 3) + '-';
@@ -68,7 +91,7 @@ export class App extends Component  {
 
     return (
       <Container>
-        <GlobalStyle/>
+        <GlobalStyle />
         <TitlePhonebook>Phonebook</TitlePhonebook>
 
         <ContactForm onSubmit={this.addContact} />
@@ -92,7 +115,6 @@ export class App extends Component  {
           )}
         </ContactsContainer>
       </Container>
-    )
+    );
   }
-
-};
+}

@@ -21,11 +21,12 @@ export const ContactsItem = styled.li`
   font-size: 18px;
   padding: 10px;
   border-radius: 15px;
-  box-shadow: ${({theme: {colors}}) => colors.itemShadow};
+  box-shadow: ${({ theme: { colors } }) => colors.itemShadow};
   animation: ${showUp} 400ms ease-in-out;
 `;
 
 export const ContactName = styled.p`
+  text-align: left;
   font-size: 18px;
   font-weight: bold;
   color: ${({ theme: { colors } }) => colors.primaryColorText};
@@ -33,9 +34,10 @@ export const ContactName = styled.p`
 `;
 
 export const ContactNumber = styled.p`
+  text-align: left;
   font-size: 16px;
   color: ${({ theme: { colors } }) => colors.contactColorText};
-`
+`;
 
 export const ButtonDelete = styled.button`
   padding: 7px 15px;
@@ -45,7 +47,10 @@ export const ButtonDelete = styled.button`
   border-radius: 35px;
   font-size: 14px;
   color: ${({ theme: { colors } }) => colors.text};
-  transition: background 300ms ${({theme: {colors}}) => colors.cubicBezier}, color 300ms ${({theme: {colors}}) => colors.cubicBezier}, box-shadow 300ms ${({theme: {colors}}) => colors.cubicBezier}, transform 300ms ${({theme: {colors}}) => colors.cubicBezier};
+  transition: background 300ms ${({ theme: { colors } }) => colors.cubicBezier},
+    color 300ms ${({ theme: { colors } }) => colors.cubicBezier},
+    box-shadow 300ms ${({ theme: { colors } }) => colors.cubicBezier},
+    transform 300ms ${({ theme: { colors } }) => colors.cubicBezier};
 
   :hover {
     transform: scale(1.1);
@@ -53,7 +58,9 @@ export const ButtonDelete = styled.button`
     color: rgb(255, 255, 255);
     background: rgb(0, 140, 255);
     border: 1px solid rgb(0, 140, 255);
-    text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px, rgb(255, 255, 255) 0px 0px 20px;
-    box-shadow: rgb(0, 140, 255) 0px 0px 5px, rgb(0, 140, 255) 0px 0px 20px, rgb(0, 140, 255) 0px 0px 50px, rgb(0, 140, 255) 0px 0px 100px;
+    text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px,
+      rgb(255, 255, 255) 0px 0px 20px;
+    box-shadow: rgb(0, 140, 255) 0px 0px 5px, rgb(0, 140, 255) 0px 0px 20px,
+      rgb(0, 140, 255) 0px 0px 50px, rgb(0, 140, 255) 0px 0px 100px;
   }
 `;
